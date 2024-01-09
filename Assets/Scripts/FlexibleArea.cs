@@ -16,7 +16,7 @@ public class FlexibleArea : MonoBehaviour
 
         // RectTransform의 속성 설정
         float leftRightBottomValue = screenWidth / 21.6f;
-        float topValue = screenHeight / 19.2f;
+        float topValue = leftRightBottomValue*3;
 
         rectTransform.offsetMin = new Vector2(leftRightBottomValue, leftRightBottomValue);
         rectTransform.offsetMax = new Vector2(-leftRightBottomValue, -topValue);

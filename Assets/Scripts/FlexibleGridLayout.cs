@@ -16,34 +16,34 @@ public class FlexibleGridLayout : LayoutGroup
         float parentWidth=rectTransform.rect.width;
         float parentHeight=rectTransform.rect.height;
 
-        float cellWidth=parentWidth/rows;
+        float cellWidth=parentWidth/((rows+columns)/2);
 
         cellSize.x=cellWidth;
         cellSize.y=cellWidth;
 
-        float spacingWidth=parentWidth/45f;
-        float spacingHeight=(parentHeight-(cellWidth*rows))/rows+((Mathf.Sqrt(parentWidth/parentHeight)-(parentWidth/parentHeight)));
+        float spacingWidth=((parentWidth-padding.right)-(cellWidth*columns))/(columns-1);
+        float spacingHeight=((parentHeight-padding.bottom)-(cellWidth*rows))/(rows-1);
+
+        rectTransform.offsetMin = new Vector2(spacingWidth, spacingWidth);
+        rectTransform.offsetMax = new Vector2(-spacingWidth, -spacingWidth);
 
         spacing.x=spacingWidth;
         spacing.y=spacingHeight;
-
-        padding.left = (int)(parentHeight / 100f);
-        padding.right = padding.left;
-        padding.top = padding.left;
-        padding.bottom = padding.left;
 
         int columnCount=0;
         int rowCount=0;
 
         for(int i=0;i<rectChildren.Count;i++)
         {
-            rowCount=i/columns;
-            columnCount=i%columns;
+            int effectiveColumns = Mathf.Max(columns, 1);
+
+            rowCount = i / effectiveColumns;
+            columnCount = i % effectiveColumns;
 
             var item=rectChildren[i];
 
             var xPos=(cellSize.x*columnCount)+(spacing.x*columnCount)+padding.left;
-            var yPos=(cellSize.y*rowCount)+(spacing.y*rowCount)+padding.top;
+            var yPos=(cellSize.y*rowCount)+(spacing.y*rowCount)+padding.left;
 
             SetChildAlongAxis(item,0,xPos,cellSize.x);
             SetChildAlongAxis(item,1,yPos,cellSize.y);
