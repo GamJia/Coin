@@ -9,6 +9,8 @@ public class FlexibleGridLayout : LayoutGroup
     public int columns;
     public Vector2 cellSize;
     public Vector2 spacing;
+    public CoinManager coinManager;
+
     public override void CalculateLayoutInputHorizontal()
     {
         base.CalculateLayoutInputHorizontal();
@@ -16,7 +18,9 @@ public class FlexibleGridLayout : LayoutGroup
         float parentWidth=rectTransform.rect.width;
         float parentHeight=rectTransform.rect.height;
 
-        float cellWidth=parentWidth/((rows+columns)/2);
+        float cellWidth=parentWidth/(columns+3);
+
+        rows=Mathf.RoundToInt((float)(parentHeight/parentWidth)*11);
 
         cellSize.x=cellWidth;
         cellSize.y=cellWidth;
@@ -33,22 +37,26 @@ public class FlexibleGridLayout : LayoutGroup
         int columnCount=0;
         int rowCount=0;
 
-        for(int i=0;i<rectChildren.Count;i++)
+        CoinManager coinManager=GetComponent<CoinManager>();
+
+        if(coinManager.isInit)
         {
-            int effectiveColumns = Mathf.Max(columns, 1);
+            for(int i=0;i<rectChildren.Count;i++)
+            {
+                int effectiveColumns = Mathf.Max(columns, 1);
 
-            rowCount = i / effectiveColumns;
-            columnCount = i % effectiveColumns;
+                rowCount = i / effectiveColumns;
+                columnCount = i % effectiveColumns;
 
-            var item=rectChildren[i];
+                var item=rectChildren[i];
 
-            var xPos=(cellSize.x*columnCount)+(spacing.x*columnCount)+padding.left;
-            var yPos=(cellSize.y*rowCount)+(spacing.y*rowCount)+padding.left;
+                var xPos=(cellSize.x*columnCount)+(spacing.x*columnCount)+padding.left;
+                var yPos=(cellSize.y*rowCount)+(spacing.y*rowCount)+padding.left;
 
-            SetChildAlongAxis(item,0,xPos,cellSize.x);
-            SetChildAlongAxis(item,1,yPos,cellSize.y);
+                SetChildAlongAxis(item,0,xPos,cellSize.x);
+                SetChildAlongAxis(item,1,yPos,cellSize.y);
+            }
         }
-
 
     }
 
