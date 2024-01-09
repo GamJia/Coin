@@ -5,10 +5,6 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public CoinData coinData;
-    void Start()
-    {
-        //SetRandomCoinID();
-    }
     public void SetRandomCoinID(Transform parent)
     {
         CoinID randomCoinID = (CoinID)Random.Range(0, 4);
@@ -21,3 +17,4 @@ public class Coin : MonoBehaviour
     }
 
 }
+

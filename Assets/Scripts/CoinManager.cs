@@ -25,6 +25,11 @@ public class CoinManager : MonoBehaviour
         {
             Init();
         }
+
+        if (Input.GetKeyDown("space"))
+        {
+            Reset();
+        }
     }
 
     void Init()
@@ -40,5 +45,13 @@ public class CoinManager : MonoBehaviour
         isInit=true;
     }
 
+    void Reset()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+        Init();
+    }
 
 }
