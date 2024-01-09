@@ -18,7 +18,7 @@ public class FlexibleGridLayout : LayoutGroup
         float parentWidth=rectTransform.rect.width;
         float parentHeight=rectTransform.rect.height;
 
-        float cellWidth=parentWidth/(columns+3);
+        float cellWidth=parentWidth/(columns+2);
 
         rows=Mathf.RoundToInt((float)(parentHeight/parentWidth)*11);
 
@@ -57,7 +57,7 @@ public class FlexibleGridLayout : LayoutGroup
                 SetChildAlongAxis(item,1,yPos,cellSize.y);
             }
 
-            this.enabled=false;
+            //this.enabled=false;
         }
 
     }

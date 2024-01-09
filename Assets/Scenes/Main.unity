@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00000029802322, y: 0.00000023841858}
-  m_SizeDelta: {x: -3.649121, y: -3.649125}
+  m_AnchoredPosition: {x: 0.000005722046, y: 0.000005722046}
+  m_SizeDelta: {x: -35.000046, y: -35.000053}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87448124
 MonoBehaviour:
@@ -179,10 +179,10 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  rows: 50
-  columns: 12
-  cellSize: {x: 6.690058, y: 6.690058}
-  spacing: {x: 1.8245616, y: 2.5479174}
+  rows: 26
+  columns: 10
+  cellSize: {x: 78.74999, y: 78.74999}
+  spacing: {x: 17.500002, y: 6.6999984}
   coinManager: {fileID: 87448125}
 --- !u!114 &87448125
 MonoBehaviour:
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b20090de0e2324e95cea5cdb16e20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Coin: {fileID: 3024481104289657325, guid: df9126505c4d5df4dbad1612cad5952c, type: 3}
+  Coin: {fileID: 2460486943911596041, guid: 08a426be01289d1429aa24e6a373cb6d, type: 3}
   flexibleGridLayout: {fileID: 87448124}
   Background: {fileID: 600962454}
   isInit: 0
@@ -237,7 +237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
+  m_AnchoredPosition: {x: 0, y: -25.000122}
   m_SizeDelta: {x: -100, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600962456

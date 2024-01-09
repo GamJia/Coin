@@ -34,7 +34,7 @@ public class CoinManager : MonoBehaviour
 
         for(int i=0;i<rows*columns;i++)
         {
-            var item=Instantiate(Coin,transform);
+            Coin.GetComponent<Coin>().SetRandomCoinID(transform);
         }
 
         isInit=true;
