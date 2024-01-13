@@ -1,14 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 
 public enum CoinID
 {
-    gold,
-    silver,
-    copper,
-    none,
+    Gold,
+    Silver,
+    Copper,
+    None,
 }
 
 [CreateAssetMenu]
@@ -16,6 +17,7 @@ public class CoinData : ScriptableObject
 {
     public static CoinData Instance => instance;
     private static CoinData instance;
+
     void Awake()
     {
         if (null == instance)
@@ -28,17 +30,17 @@ public class CoinData : ScriptableObject
 
     [SerializeField] CoinArray[] coinArray;
 
-    Dictionary<CoinID, GameObject> coinDictionary = new Dictionary<CoinID, GameObject>();
+    Dictionary<CoinID, GameObject> coinDictionary = new Dictionary<CoinID, GameObject>(); 
 
     void GenerateDictionary()
     {
         for (int i = 0; i < coinArray.Length; i++)
         {
-            coinDictionary.Add(coinArray[i].coinID, coinArray[i].coin);
+            coinDictionary.Add(coinArray[i].coinID, coinArray[i].coin); 
         }
     }
 
-    public GameObject GetCoin(CoinID id)
+    public GameObject GetCoinObject(CoinID id)  
     {
         Debug.Assert(coinArray.Length > 0, "No Coin!!");
 
@@ -61,9 +63,9 @@ public class CoinData : ScriptableObject
 [Serializable]
 public struct CoinArray
 {
-    [SerializeField] GameObject _coin;
+    [SerializeField] GameObject _coin; // Image 대신 GameObject으로 변경
     [SerializeField] CoinID _coinID;
 
-    public GameObject coin { get { return _coin; } }
+    public GameObject coin { get { return _coin; } } // Image 대신 GameObject으로 변경
     public CoinID coinID { get { return _coinID; } }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class CoinManager : MonoBehaviour
 {
-    public GameObject Coin;
+    public GameObject coinPrefab;
     public FlexibleGridLayout flexibleGridLayout;
     public RectTransform Background;
     public bool isInit;
-    private int rows;
+    public int rows;
     private int columns;
     void Awake()
     {
@@ -21,7 +21,7 @@ public class CoinManager : MonoBehaviour
 
     void Update()
     {
-        if(flexibleGridLayout.rows<rows&&!isInit)
+        if(isAvailable())
         {
             Init();
         }
@@ -31,15 +31,50 @@ public class CoinManager : MonoBehaviour
             Reset();
         }
     }
+    bool isAvailable()
+    {
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+
+        if(!isInit)
+        {
+            if(flexibleGridLayout.rows<=rows)
+            {
+                if(screenHeight%screenWidth==0)
+                {
+                    rows=flexibleGridLayout.rows;
+                    columns=flexibleGridLayout.columns;
+
+                    if(rows%columns==0)
+                    {
+                        return true;
+                    }
+                    
+                }
+
+                else
+                {
+                    if(flexibleGridLayout.rows<rows)
+                    {
+                        return true;
+                    }
+                }
+            }
+            
+        }
+
+        return false;
+    }
 
     void Init()
     {
+        
         rows=flexibleGridLayout.rows;
         columns=flexibleGridLayout.columns;
 
         for(int i=0;i<rows*columns;i++)
         {
-            Coin.GetComponent<Coin>().SetRandomCoinID(transform);
+            GameObject coinObject = Instantiate(coinPrefab, transform);
         }
 
         isInit=true;

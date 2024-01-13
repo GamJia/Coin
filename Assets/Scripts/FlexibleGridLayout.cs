@@ -18,9 +18,9 @@ public class FlexibleGridLayout : LayoutGroup
         float parentWidth=rectTransform.rect.width;
         float parentHeight=rectTransform.rect.height;
 
-        float cellWidth=parentWidth/(columns+2);
+        float cellWidth=parentWidth/(columns+0.3f);
 
-        rows=Mathf.RoundToInt((float)(parentHeight/parentWidth)*11);
+        rows=Mathf.RoundToInt((float)(parentHeight/parentWidth)*7);
 
         cellSize.x=cellWidth;
         cellSize.y=cellWidth;
@@ -37,9 +37,8 @@ public class FlexibleGridLayout : LayoutGroup
         int columnCount=0;
         int rowCount=0;
 
-        CoinManager coinManager=GetComponent<CoinManager>();
 
-        if(coinManager.isInit)
+        if(rectChildren.Count>0)
         {
             for(int i=0;i<rectChildren.Count;i++)
             {
@@ -57,7 +56,6 @@ public class FlexibleGridLayout : LayoutGroup
                 SetChildAlongAxis(item,1,yPos,cellSize.y);
             }
 
-            //this.enabled=false;
         }
 
     }

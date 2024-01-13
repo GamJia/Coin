@@ -11,10 +11,8 @@ public class FlexibleArea : MonoBehaviour
         float screenWidth = Screen.width;
         float screenHeight = Screen.height;
 
-        // 현재 게임 오브젝트의 RectTransform 가져오기
         RectTransform rectTransform = GetComponent<RectTransform>();
 
-        // RectTransform의 속성 설정
         float leftRightBottomValue = screenWidth / 21.6f;
         float topValue = leftRightBottomValue*4;
 
