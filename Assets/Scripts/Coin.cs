@@ -7,44 +7,11 @@ public class Coin : MonoBehaviour
 {
     public CoinData coinData;
     public CoinID coinID;
+    public RectTransform fakeRectTransform;
 
     private void Start()
     {
-        SetRandomCoinID();
-    }
-    private void SetRandomCoinID()
-    {       
-        SetCoinImage((CoinID)Random.Range(0, 4));
-    }
-
-    public void SetCoinImage(CoinID currentID)
-    {
-        Image currentImage=GetComponent<Image>();       
-        GameObject coinObject = coinData.GetCoinObject(currentID);
-        coinID=currentID;
-
-        if (coinObject != null)
-        {
-            Image coinImage = coinObject.GetComponent<Image>();
-
-            if (coinImage != null)
-            {
-                currentImage.sprite = coinImage.sprite;
-                gameObject.name = coinID.ToString();
-            }
-        }
-
-        if(coinID == CoinID.None)
-        {
-            GetComponent<Collider2D>().enabled=false;
-            currentImage.color = new Color(currentImage.color.r, currentImage.color.g, currentImage.color.b, 0f);
-        }
-
-    }
-
-    public void DestroyCoin()
-    {
-        SetCoinImage(CoinID.None);
+        fakeRectTransform=CoinManager.Instance.fakeRectTransform;
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -58,6 +25,33 @@ public class Coin : MonoBehaviour
     {
         Image currentImage=GetComponent<Image>();
         currentImage.color = Color.white;
+    }
+
+    public void DestroyCoin()
+    {
+        InstantiateFakeCoin();
+
+        coinID = CoinID.None;
+
+        GetComponent<Image>().enabled=false;
+        GetComponent<Collider2D>().enabled = false;
+
+        gameObject.name = "3. None(Clone)";
+    }
+
+    private void InstantiateFakeCoin()
+    {
+        GameObject fakeCoinPrefab = coinData.GetCoinObject(coinID);
+        GameObject fakeCoin = Instantiate(fakeCoinPrefab, transform.position, Quaternion.identity, fakeRectTransform);
+        fakeCoin.AddComponent<FakeCoin>();
+        
+        RectTransform fakeCoinRectTransform = fakeCoin.GetComponent<RectTransform>();
+        if (fakeCoinRectTransform != null)
+        {
+            fakeCoinRectTransform.sizeDelta = GetComponent<RectTransform>().sizeDelta;
+        }
+
+        fakeCoin.transform.SetParent(fakeRectTransform);
     }
 
 

@@ -63,9 +63,9 @@ public class CoinData : ScriptableObject
 [Serializable]
 public struct CoinArray
 {
-    [SerializeField] GameObject _coin; // Image 대신 GameObject으로 변경
+    [SerializeField] GameObject _coin; 
     [SerializeField] CoinID _coinID;
 
-    public GameObject coin { get { return _coin; } } // Image 대신 GameObject으로 변경
+    public GameObject coin { get { return _coin; } } 
     public CoinID coinID { get { return _coinID; } }
 }

@@ -4,14 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 public class CoinManager : MonoBehaviour
 {
-    public GameObject coinPrefab;
     public FlexibleGridLayout flexibleGridLayout;
     public RectTransform Background;
+    public CoinData coinData;
+    public RectTransform fakeRectTransform;
     public bool isInit;
     public int rows;
     private int columns;
+
+    public static CoinManager Instance => instance;
+    private static CoinManager instance;
+
+
     void Awake()
     {
+        if (null == instance)
+        {
+            instance = this;
+        }
+
         float parentWidth=Background.rect.width;
         float parentHeight=Background.rect.height;
 
@@ -74,7 +85,8 @@ public class CoinManager : MonoBehaviour
 
         for(int i=0;i<rows*columns;i++)
         {
-            GameObject coinObject = Instantiate(coinPrefab, transform);
+            GameObject coinObject = coinData.GetCoinObject((CoinID)Random.Range(0, 4));
+            Instantiate(coinObject, transform);
         }
 
         isInit=true;
