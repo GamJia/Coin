@@ -29,49 +29,48 @@ public class CoinManager : MonoBehaviour
         rows=flexibleGridLayout.rows;
         columns=flexibleGridLayout.columns;
     }
+    
+    void Start()
+    {
+        Init();
+    }
 
     void Update()
     {
         if(isAvailable())
         {
-            Init();
-        }
-
-        if (Input.GetKeyDown("space"))
-        {
             Reset();
         }
+
     }
+
+    
     bool isAvailable()
     {
         float screenWidth = Screen.width;
         float screenHeight = Screen.height;
 
-        if(!isInit)
+        if(flexibleGridLayout.rows<=rows)
         {
-            if(flexibleGridLayout.rows<=rows)
+            if(screenHeight%screenWidth==0)
             {
-                if(screenHeight%screenWidth==0)
-                {
-                    rows=flexibleGridLayout.rows;
-                    columns=flexibleGridLayout.columns;
+                rows=flexibleGridLayout.rows;
+                columns=flexibleGridLayout.columns;
 
-                    if(rows%columns==0)
-                    {
-                        return true;
-                    }
-                    
+                if(rows%columns==0)
+                {
+                    return true;
                 }
+                
+            }
 
-                else
+            else
+            {
+                if(flexibleGridLayout.rows<rows)
                 {
-                    if(flexibleGridLayout.rows<rows)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
-            
         }
 
         return false;
@@ -79,20 +78,32 @@ public class CoinManager : MonoBehaviour
 
     void Init()
     {
-        
         rows=flexibleGridLayout.rows;
         columns=flexibleGridLayout.columns;
 
-        for(int i=0;i<rows*columns;i++)
+        for (int row = 0; row < rows; row++)
         {
-            GameObject coinObject = coinData.GetCoinObject((CoinID)Random.Range(0, 4));
-            Instantiate(coinObject, transform);
+            for (int col = 0; col < columns; col++)
+            {
+                int index = row * columns + col;
+
+                if ((row.Equals(rows-1)||(row.Equals(rows-2))) && (col >= columns - 2))
+                {
+                    GameObject coinObject = coinData.GetCoinObject(CoinID.None);
+                    Instantiate(coinObject, transform);
+                }
+                else
+                {
+                    GameObject coinObject = coinData.GetCoinObject((CoinID)Random.Range(0, 4));
+                    Instantiate(coinObject, transform);
+                }
+            }
         }
 
         isInit=true;
     }
 
-    void Reset()
+    public void Reset()
     {
         for (int i = 0; i < transform.childCount; i++)
         {

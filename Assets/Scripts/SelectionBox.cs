@@ -49,10 +49,12 @@ public class SelectionBox : MonoBehaviour
 
             Vector2 center = (startMousePosition + currentMousePosition) / 2;
 
-            boxCollider.offset = center;
-            boxCollider.size = new Vector2(Mathf.Abs(startMousePosition.x - currentMousePosition.x),
+            float scaleFactor = 1.15f; 
+            float newSizeX = Mathf.Abs(startMousePosition.x - currentMousePosition.x) * scaleFactor;
+            float newSizeY = Mathf.Abs(startMousePosition.y - currentMousePosition.y) * scaleFactor;
 
-            Mathf.Abs(startMousePosition.y - currentMousePosition.y));    
+            boxCollider.offset = center;
+            boxCollider.size = new Vector2(newSizeX, newSizeY);
 
         }
 
@@ -104,9 +106,11 @@ public class SelectionBox : MonoBehaviour
 
         if (goldCount == silverCount && silverCount == copperCount)
         {
+           
             foreach (GameObject selectedObject in selectedObjectsCopy)
             {
                 Coin coin = selectedObject.GetComponent<Coin>();
+                UIManager.Instance.CalculateScore(10);
                 if (coin != null)
                 {
                     coin.DestroyCoin();

@@ -30,7 +30,7 @@ public class FakeCoin : MonoBehaviour
 
         if (coinRigidbody != null)
         {
-            float randomAngle = Random.Range(0f, 180f);
+            float randomAngle = Random.Range(40f, 140f);
 
             Vector2 jumpDirection = new Vector2(Mathf.Cos(randomAngle * Mathf.Deg2Rad), Mathf.Sin(randomAngle * Mathf.Deg2Rad));
             coinRigidbody.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
