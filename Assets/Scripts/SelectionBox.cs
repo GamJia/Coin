@@ -106,7 +106,7 @@ public class SelectionBox : MonoBehaviour
 
         if (goldCount == silverCount && silverCount == copperCount)
         {
-           
+            AudioManager.Instance.PlaySFX(AudioID.Merge); 
             foreach (GameObject selectedObject in selectedObjectsCopy)
             {
                 Coin coin = selectedObject.GetComponent<Coin>();

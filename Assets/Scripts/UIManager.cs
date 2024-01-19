@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
     [SerializeField] private Button resetButton;
+    [SerializeField] private Text countDownText;
     private Text resetButtonText;
     public static UIManager Instance => instance;
     private static UIManager instance;
@@ -23,6 +24,29 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         ResizeUI();
+        StartCoroutine(CountDown());
+    }
+
+    private IEnumerator CountDown()
+    {
+        float countdownDuration = 3f;
+        float countdownTimer = countdownDuration;
+
+        while (countdownTimer > 0)
+        {
+            AudioManager.Instance.PlaySFX(AudioID.CountDown); 
+            countDownText.text = countdownTimer.ToString(); 
+            yield return new WaitForSeconds(1f);
+            countdownTimer--;
+            
+        }
+
+        CoinManager.Instance.Reset(); 
+
+        resetButton.gameObject.SetActive(true);
+        countDownText.gameObject.SetActive(false);
+        AudioManager.Instance.PlayBGM(); 
+
     }
 
     void Update()
@@ -49,6 +73,8 @@ public class UIManager : MonoBehaviour
 
         resetButtonText = resetButton.GetComponentInChildren<Text>();
         resetButtonText.fontSize = (int)(Screen.width / 5);
+
+        resetButton.gameObject.SetActive(false);
     }
 
     public void CalculateScore(int plusScore)
@@ -72,6 +98,11 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(CountdownAndDisableButton());
             CoinManager.Instance.Reset(); 
+            
+            if(score>0)
+            {
+                CalculateScore(-3);
+            }            
         }
     }
 

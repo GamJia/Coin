@@ -8,9 +8,9 @@ public class CoinManager : MonoBehaviour
     public RectTransform Background;
     public CoinData coinData;
     public RectTransform fakeRectTransform;
-    public bool isInit;
     public int rows;
     private int columns;
+    private bool isCountDownOver;
 
     public static CoinManager Instance => instance;
     private static CoinManager instance;
@@ -30,56 +30,12 @@ public class CoinManager : MonoBehaviour
         columns=flexibleGridLayout.columns;
     }
     
-    void Start()
-    {
-        Init();
-    }
-
-    void Update()
-    {
-        if(isAvailable())
-        {
-            Reset();
-        }
-
-    }
-
     
-    bool isAvailable()
-    {
-        float screenWidth = Screen.width;
-        float screenHeight = Screen.height;
-
-        if(flexibleGridLayout.rows<=rows)
-        {
-            if(screenHeight%screenWidth==0)
-            {
-                rows=flexibleGridLayout.rows;
-                columns=flexibleGridLayout.columns;
-
-                if(rows%columns==0)
-                {
-                    return true;
-                }
-                
-            }
-
-            else
-            {
-                if(flexibleGridLayout.rows<rows)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
     void Init()
     {
         rows=flexibleGridLayout.rows;
         columns=flexibleGridLayout.columns;
+        
 
         for (int row = 0; row < rows; row++)
         {
@@ -100,7 +56,6 @@ public class CoinManager : MonoBehaviour
             }
         }
 
-        isInit=true;
     }
 
     public void Reset()
