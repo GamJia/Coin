@@ -19,6 +19,11 @@ public class SelectionBox : MonoBehaviour
     void Update()
     {
         DragLine();
+
+        if(lineRenderer.positionCount<1&&boxCollider!=null)
+        {
+            Destroy(boxCollider);
+        }
     }
 
     void DragLine()
@@ -49,12 +54,10 @@ public class SelectionBox : MonoBehaviour
 
             Vector2 center = (startMousePosition + currentMousePosition) / 2;
 
-            float scaleFactor = 1.15f; 
-            float newSizeX = Mathf.Abs(startMousePosition.x - currentMousePosition.x) * scaleFactor;
-            float newSizeY = Mathf.Abs(startMousePosition.y - currentMousePosition.y) * scaleFactor;
-
             boxCollider.offset = center;
-            boxCollider.size = new Vector2(newSizeX, newSizeY);
+            boxCollider.size = new Vector2(Mathf.Abs(startMousePosition.x - currentMousePosition.x),
+
+            Mathf.Abs(startMousePosition.y - currentMousePosition.y));    
 
         }
 

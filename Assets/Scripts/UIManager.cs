@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Button resetButton;
     [SerializeField] private Text countDownText;
+    [SerializeField] private Slider timer;
     private Text resetButtonText;
     public static UIManager Instance => instance;
     private static UIManager instance;
@@ -45,6 +46,7 @@ public class UIManager : MonoBehaviour
 
         resetButton.gameObject.SetActive(true);
         countDownText.gameObject.SetActive(false);
+        timer.gameObject.SetActive(true);
         AudioManager.Instance.PlayBGM(); 
 
     }
@@ -60,10 +62,8 @@ public class UIManager : MonoBehaviour
         scoreText.fontSize = (int)((Screen.width / 10) * 1.25f);
 
         RectTransform scoreTextRectTransform = scoreText.rectTransform;
-        float desiredWidth = (Screen.width / 10);
-        scoreTextRectTransform.sizeDelta = new Vector2(desiredWidth, scoreTextRectTransform.sizeDelta.y);
-
-        scoreTextRectTransform.anchoredPosition = new Vector2(desiredWidth, -(Screen.width / 20));
+        scoreTextRectTransform.sizeDelta = new Vector2(((Screen.width / 10)), scoreTextRectTransform.sizeDelta.y);
+        scoreTextRectTransform.anchoredPosition = new Vector2(((Screen.width / 10)), -(Screen.width / 20));
 
         RectTransform resetButtonRectTransform = resetButton.GetComponent<RectTransform>();
         resetButtonRectTransform.anchoredPosition = new Vector2(-(Screen.width / 6), (Screen.width / 6));
@@ -73,6 +73,10 @@ public class UIManager : MonoBehaviour
 
         resetButtonText = resetButton.GetComponentInChildren<Text>();
         resetButtonText.fontSize = (int)(Screen.width / 5);
+
+        RectTransform timerRectTransform = timer.GetComponent<RectTransform>();
+        timerRectTransform.sizeDelta = new Vector2((Screen.width / 1.125f), (Screen.width / 13.5f));
+        timerRectTransform.anchoredPosition = new Vector2(0, -(Screen.width / 7f));
 
         resetButton.gameObject.SetActive(false);
     }
@@ -101,7 +105,7 @@ public class UIManager : MonoBehaviour
             
             if(score>0)
             {
-                CalculateScore(-3);
+                CalculateScore(-5);
             }            
         }
     }
