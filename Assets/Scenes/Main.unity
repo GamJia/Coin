@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000009536743, y: -0.0000009536743}
-  m_SizeDelta: {x: -18.108112, y: -18.108109}
+  m_AnchoredPosition: {x: 0.00000071525574, y: 0.00000071525574}
+  m_SizeDelta: {x: -13.24325, y: -13.24325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87448124
 MonoBehaviour:
@@ -181,8 +181,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   rows: 13
   columns: 7
-  cellSize: {x: 181.08107, y: 181.08107}
-  spacing: {x: 9.054059, y: 3.1531613}
+  cellSize: {x: 132.43243, y: 132.43243}
+  spacing: {x: 6.6216226, y: 2.9279225}
   coinManager: {fileID: 87448125}
 --- !u!114 &87448125
 MonoBehaviour:
@@ -595,6 +595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerFill: {fileID: 539910623}
   resetButton: {fileID: 1509801672}
+  score: {fileID: 146091362}
   coin: {fileID: 600962453}
   selectionBox: {fileID: 920678093}
   gameOverUI: {fileID: 401150417}

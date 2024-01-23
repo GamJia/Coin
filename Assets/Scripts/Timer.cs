@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
     Slider timer; 
     [SerializeField] private Image timerFill;
     [SerializeField] private GameObject resetButton;
+    [SerializeField] private GameObject score;
     public GameObject coin;
     public GameObject selectionBox;
     public GameObject gameOverUI;
@@ -53,6 +54,7 @@ public class Timer : MonoBehaviour
         AudioManager.Instance.SetBGMPitch(1f);
         resetButton.SetActive(false);
         gameOverUI.SetActive(true);
+        score.SetActive(false);
 
         this.gameObject.SetActive(false);
     }
