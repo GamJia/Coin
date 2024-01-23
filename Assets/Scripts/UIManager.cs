@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; 
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text finalScoreText;
     [SerializeField] private Button resetButton;
     [SerializeField] private Text countDownText;
     [SerializeField] private Slider timer;
+    [SerializeField] private GameObject setting;
     private Text resetButtonText;
     public static UIManager Instance => instance;
     private static UIManager instance;
@@ -59,12 +62,7 @@ public class UIManager : MonoBehaviour
 
     private void ResizeUI()
     {
-        scoreText.fontSize = (int)((Screen.width / 10) * 1.25f);
-
-        RectTransform scoreTextRectTransform = scoreText.rectTransform;
-        scoreTextRectTransform.sizeDelta = new Vector2(((Screen.width / 10)), scoreTextRectTransform.sizeDelta.y);
-        scoreTextRectTransform.anchoredPosition = new Vector2(((Screen.width / 10)), -(Screen.width / 20));
-
+ 
         RectTransform resetButtonRectTransform = resetButton.GetComponent<RectTransform>();
         resetButtonRectTransform.anchoredPosition = new Vector2(-(Screen.width / 6), (Screen.width / 6));
         resetButtonRectTransform.sizeDelta = new Vector2(Screen.width / 5, Screen.width / 5);
@@ -73,10 +71,6 @@ public class UIManager : MonoBehaviour
 
         resetButtonText = resetButton.GetComponentInChildren<Text>();
         resetButtonText.fontSize = (int)(Screen.width / 5);
-
-        RectTransform timerRectTransform = timer.GetComponent<RectTransform>();
-        timerRectTransform.sizeDelta = new Vector2((Screen.width / 1.125f), (Screen.width / 13.5f));
-        timerRectTransform.anchoredPosition = new Vector2(0, -(Screen.width / 7f));
 
         resetButton.gameObject.SetActive(false);
     }
@@ -88,11 +82,13 @@ public class UIManager : MonoBehaviour
         {
             string scoreFormat = score.ToString("D3");
             scoreText.text = scoreFormat;
+            finalScoreText.text=scoreFormat;
         }
 
         else
         {
             scoreText.text = score.ToString();
+            finalScoreText.text = score.ToString();
         }
     }
 
@@ -125,6 +121,30 @@ public class UIManager : MonoBehaviour
 
         isResetButtonActive = true;
     }
+
+    public void ChangeOption(Toggle toggle)
+    {
+        if(toggle.isOn)
+        {
+            setting.SetActive(true);
+        }
+
+        else
+        {
+            setting.SetActive(false);
+        }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 
    
 }

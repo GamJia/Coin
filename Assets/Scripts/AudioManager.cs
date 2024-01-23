@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource _bgm;
     [SerializeField] AudioSource _sfx;
 
+
+
     private void Awake()
     {
         if (null == instance)
@@ -26,6 +28,25 @@ public class AudioManager : MonoBehaviour
         _bgm.Play();
     }
 
+    public void SetBGMPitch(float pitch)
+    {
+        _bgm.pitch = pitch; 
+    }
+
+    public void ChangeBGMVolume(Toggle toggle)
+    {
+        if(toggle.isOn)
+        {
+            _bgm.volume = -80f;
+        }
+
+        else
+        {
+            _bgm.volume = 1f;
+        }
+        
+    }
+
     public void PlaySFX(AudioID id)
     {
         if (_sfx.isPlaying)
@@ -35,4 +56,19 @@ public class AudioManager : MonoBehaviour
 
         _sfx.PlayOneShot(_audioStorage.GetAudio(id));
     }
+
+    public void ChangeSFXVolume(Toggle toggle)
+    {
+        if(toggle.isOn)
+        {
+            _sfx.volume = -80f;
+        }
+
+        else
+        {
+            _sfx.volume = 1f;
+        }
+        
+    }
+
 }

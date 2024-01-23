@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     Slider timer; 
+    [SerializeField] private Image timerFill;
+    [SerializeField] private GameObject resetButton;
     public GameObject coin;
     public GameObject selectionBox;
+    public GameObject gameOverUI;
 
     void Start()
     {
@@ -22,10 +25,35 @@ public class Timer : MonoBehaviour
         {
             timer.value -= 1; 
             yield return new WaitForSeconds(1f); 
+
+            if(timer.value>60)
+            {
+                timerFill.color=new Color32(158,255,158,255);
+            }
+
+            else if(timer.value<30)
+            {
+                timerFill.color=new Color32(255,158,158,255);
+                if(timer.value<10)
+                {
+                    AudioManager.Instance.SetBGMPitch(1.1f);
+                }
+
+                
+            }
+
+            else
+            {
+                timerFill.color=new Color32(255,246,158,255);
+            }
         }
 
-        Debug.Log("Time Over");
         coin.SetActive(false);
         selectionBox.SetActive(false);
+        AudioManager.Instance.SetBGMPitch(1f);
+        resetButton.SetActive(false);
+        gameOverUI.SetActive(true);
+
+        this.gameObject.SetActive(false);
     }
 }
