@@ -14,7 +14,7 @@ public class FlexibleArea : MonoBehaviour
         RectTransform rectTransform = GetComponent<RectTransform>();
 
         float leftRightBottomValue = screenWidth / 21.6f;
-        float topValue = leftRightBottomValue*4;
+        float topValue = leftRightBottomValue*8;
 
         rectTransform.offsetMin = new Vector2(leftRightBottomValue, leftRightBottomValue);
         rectTransform.offsetMax = new Vector2(-leftRightBottomValue, -topValue);

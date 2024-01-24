@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00000071525574, y: 0.00000071525574}
-  m_SizeDelta: {x: -13.24325, y: -13.24325}
+  m_AnchoredPosition: {x: 0.00000047683716, y: -0.00000047683716}
+  m_SizeDelta: {x: -13.243263, y: -13.243256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87448124
 MonoBehaviour:
@@ -179,10 +179,10 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  rows: 13
+  rows: 16
   columns: 7
-  cellSize: {x: 132.43243, y: 132.43243}
-  spacing: {x: 6.6216226, y: 2.9279225}
+  cellSize: {x: 132.43242, y: 132.43242}
+  spacing: {x: 6.62163, y: 7.8558593}
   coinManager: {fileID: 87448125}
 --- !u!114 &87448125
 MonoBehaviour:
@@ -236,7 +236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 129, y: -74}
+  m_AnchoredPosition: {x: 129, y: -336}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &146091364
@@ -527,7 +527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -184}
+  m_AnchoredPosition: {x: 0, y: -446}
   m_SizeDelta: {x: -120, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &256750803
@@ -1076,7 +1076,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &539910621
 GameObject:
@@ -1656,6 +1656,50 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!1 &752351037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 752351039}
+  - component: {fileID: 752351038}
+  m_Layer: 0
+  m_Name: "(\uC8FC\uC758) Admob Manager"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &752351038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752351037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 792dcdb83761f664db61296c8ef08505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &752351039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752351037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &810601428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,7 +2415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -76, y: -74}
+  m_AnchoredPosition: {x: -76, y: -336}
   m_SizeDelta: {x: 163, y: 163}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489722198
